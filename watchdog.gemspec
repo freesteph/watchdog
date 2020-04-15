@@ -1,3 +1,4 @@
+# coding: utf-8
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
@@ -9,9 +10,9 @@ Gem::Specification.new do |spec|
   spec.version     = Watchdog::VERSION
   spec.authors     = ["Stéphane Maniaci"]
   spec.email       = ["stephane.maniaci@gmail.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of Watchdog."
-  spec.description = "TODO: Description of Watchdog."
+  spec.homepage    = "https://foo.bar"
+  spec.summary     = "Summary of Watchdog."
+  spec.description = "Description of Watchdog."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -26,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rails", "~> 6.0.2", ">= 6.0.2.2"
+  spec.add_dependency "haml-rails"
 
   spec.add_development_dependency "sqlite3"
 end
