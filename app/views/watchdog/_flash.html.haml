@@ -1,0 +1,6 @@
+- unless flash.empty?
+  .flash
+    - flash.keys.each do |key|
+      %div{class: key}
+        - flash[key].each do |msg|
+          %p= msg

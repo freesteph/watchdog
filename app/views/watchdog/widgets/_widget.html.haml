@@ -1,0 +1,12 @@
+.widget{id: widget.css_id, class: widget.css_classes}
+  .header
+    %h2.govuk-heading-m= widget.title
+    %p.govuk-body= widget.subtitle
+    - if widget.logo.present?
+      .logo
+        = image_tag widget.logo
+    %span.govuk-body.last-refresh
+      Last updated:
+      = Time.now.strftime("%l:%M%p")
+  .content
+    = send "#{widget.type}_chart".to_sym, widget.data_url, refresh: 30, download: true

@@ -1,0 +1,14 @@
+groups:
+  -
+    name: zendesk
+    widgets:
+      -
+        id: unanswered_tickets
+        title: 'Tickets'
+        subtitle: 'yolo'
+        type: 'pie'
+      -
+        id: answered_tickets
+        title: 'Strike 2'
+        subtitle: 'yolo'
+        type: 'pie'
