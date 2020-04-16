@@ -36,13 +36,15 @@ module Watchdog
 
       flash[:alert] = []
 
-      @widgets.map(&:group).each do |controller|
-        name = controller_name(controller)
+      @widgets.select! do |widget|
+        name = controller_name(widget.group)
 
         begin
           name.constantize
+          true
         rescue NameError
-          flash[:alert] << "You are missing #{name}. Make sure you have defined it."
+          flash[:alert] << [widget, name]
+          false
         end
       end
     end

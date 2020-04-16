@@ -1,6 +1,16 @@
 - unless flash.empty?
   .flash
-    - flash.keys.each do |key|
-      %div{class: key}
-        - flash[key].each do |msg|
-          %p= msg
+    .govuk-width-container
+      .govuk-grid-row
+        .govuk-grid-column-two-thirds
+          - flash.keys.each do |key|
+            %div{class: key}
+              - flash[key].each do |widget, name|
+                %p.govuk-body
+                  The widget
+                  %code= widget.id
+                  belongs to
+                  %code= widget.group
+                  \, which maps to a
+                  %code= name
+                  \. No such controller could be found. Please ensure you have defined it.
