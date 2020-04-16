@@ -25,10 +25,11 @@ module Watchdog
     end
 
     def css_id
-
+      [group, id].join('-')
     end
 
     def css_classes
+      style
     end
 
     def render_attributes
