@@ -1,4 +1,4 @@
-- unless flash.empty?
+- unless flash.empty? or flash.each { |key| flash[:key].nil? }
   .flash
     .govuk-width-container
       .govuk-grid-row
