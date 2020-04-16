@@ -93,10 +93,76 @@ setup and loaded before our import line.
 
 ### Setup widgets
 
-Add a c
+Add a YAML file in `config/widgets.yml`. It should contain an array of
+widgets under a `widgets` key like this:
 
-## Contributing
-Contribution directions go here.
+```
+widgets:
+  -
+    id: unanswered_tickets
+    title: 'Unanswered tickets'
+    subtitle: 'This week'
+    type: 'pie'
+    group: 'zendesk'
+    refresh_rate: 10
+  -
+    id: answered_tickets
+    title: 'Answered tickets'
+    subtitle: 'This week'
+    type: 'line'
+    group: 'zendesk'
+    style: 'wide'
+```
+
+Watchdog will automatically pick up these when you start your app, so
+make sure you restart your app if you operate any changes in it.
+
+### Setup actions
+
+Every widget needs a data source, and that data source is inferred by
+Watchdog: it looks for a controller named after the widget's `group`
+property, then calls the action matching the widget's `id` property.
+
+In the sample YAML file above, the first widget will look for a
+`ZendeskController` and try to call `unanswered_tickets` on it to get
+data. So go ahead and write a controller for it:
+
+```
+class Watchdog::ZendeskController < ApplicationController
+  def unanswered_tickets
+    render json: [[2, 3], [3, 4], [4, 5]]
+  end
+end
+```
+
+Don't forget to declare your controller within the `Watchdog::`
+namespace.
+
+The controller infering is done with Rails's own inflector so you
+could have an `antique_road_show` group that would map to
+`Watchdog::AntiqueRoadShowController`.
+
+### Contemplate widgets
+That's it! Navigate to `localhost:3000/watchdog/widgets` to see the
+result.
+
+Note that how you provide data to your widgets is entirely up to you.
+
+## Widget properties
+
+Each widget in the YAML config file can sport the following
+properties:
+
+| name         | type   | required? | description                                                                                                                       |
+|--------------|--------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
+| id           | string | X         | identifier for your widget. Requires an action of the same name defined on the relevant controller.                               |
+| group        | string | X         | group for your widget. This indicates which controller to look for.                                                               |
+| type         | string | X         | a type of chart to render. See the [Chartkick documentation](https://github.com/ankane/chartkick#charts) for the available types. |
+| title        | string |           | a title for your widget.                                                                                                          |
+| subtitle     | string |           | a subtitle for your widget.                                                                                                       |
+| refresh_rate | number |           | how often should the widget fetch and re-render data, in seconds. By default, it will not refresh automatically.                  |
+| style        | string |           | an optional space-separated list of CSS classes to apply to your widget. Current option is 'wide'.                                |
+
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
