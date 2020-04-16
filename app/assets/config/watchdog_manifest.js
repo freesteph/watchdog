@@ -1,1 +1,2 @@
-//= link_directory ../stylesheets/watchdog .css
+//= require chartkick
+//= require Chart.bundle

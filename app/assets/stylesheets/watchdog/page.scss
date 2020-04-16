@@ -1,0 +1,23 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.flash {
+  width: 100%;
+  background: #FFF;
+  padding: 2rem;
+}
+
+#title {
+}

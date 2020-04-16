@@ -30,5 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "haml-rails"
   spec.add_dependency "chartkick"
 
+  spec.add_development_dependency "sassc-rails"
   spec.add_development_dependency "sqlite3"
 end

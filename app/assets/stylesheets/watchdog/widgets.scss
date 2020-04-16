@@ -1,0 +1,52 @@
+.widget {
+  width: 300px;
+  flex-grow: 0;
+  position: relative;
+  background: govuk-colour("light-grey");
+  box-shadow: 3px 3px 12px govuk-colour("dark-grey");
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 1rem;
+  margin-bottom: govuk-spacing(3);
+
+  .header {
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    background: govuk-colour("white");
+    border-bottom: 1px solid govuk-colour("mid-grey");
+    padding: 1rem;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .logo {
+      max-width: 13%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .last-refresh {
+    color: govuk-colour("dark-grey");
+    font-size: 0.9rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
+
+.wide {
+  flex-grow: 2;
+}
