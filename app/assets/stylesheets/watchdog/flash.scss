@@ -1,4 +1,6 @@
 .flash {
+  margin: govuk-spacing(2) 0;
+
   .errors {
     p {
       border-left: 0.5rem solid govuk-colour("red");
