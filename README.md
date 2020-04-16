@@ -2,6 +2,8 @@
 Watchdog is a Rails engine designed to read and present widgets, which
 are simple charts with extra metadata.
 
+![screenshot of Watchdog](https://github.com/freesteph/watchdog/raw/master/app/assets/images/screenshot.png)
+
 It reads a YAML file in `config/widgets.yml` and will render them onto
 the page. You only need to define your widgets configuration and write
 the matching controllers action to provide data for them.
