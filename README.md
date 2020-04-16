@@ -155,9 +155,9 @@ properties:
 
 | name         | type   | required? | description                                                                                                                       |
 |--------------|--------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
-| id           | string | X         | identifier for your widget. Requires an action of the same name defined on the relevant controller.                               |
-| group        | string | X         | group for your widget. This indicates which controller to look for.                                                               |
-| type         | string | X         | a type of chart to render. See the [Chartkick documentation](https://github.com/ankane/chartkick#charts) for the available types. |
+| **id**       | string | X         | Identifier. Requires a matching action defined on the relevant controller.                                                        |
+| **group**    | string | X         | Group this widget belongs to. Indicates which controller to look for.                                                             |
+| **type**     | string | X         | a type of chart to render. See the [Chartkick documentation](https://github.com/ankane/chartkick#charts) for the available types. |
 | title        | string |           | a title for your widget.                                                                                                          |
 | subtitle     | string |           | a subtitle for your widget.                                                                                                       |
 | refresh_rate | number |           | how often should the widget fetch and re-render data, in seconds. By default, it will not refresh automatically.                  |
