@@ -2,7 +2,14 @@
 
 module Watchdog
   class Widget
-    attr_accessor :id, :title, :subtitle, :group, :style, :type, :url
+    attr_accessor :id,
+                  :title,
+                  :subtitle,
+                  :group,
+                  :style,
+                  :type,
+                  :url,
+                  :refresh_rate
 
     def initialize(attrs)
       attrs.each do |name, value|
@@ -22,6 +29,16 @@ module Watchdog
     end
 
     def css_classes
+    end
+
+    def render_attributes
+      attrs = {}
+
+      if refresh_rate.present?
+        attrs[:refresh] = refresh_rate
+      end
+
+      attrs
     end
   end
 end

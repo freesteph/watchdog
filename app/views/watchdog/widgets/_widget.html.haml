@@ -9,4 +9,4 @@
       Last updated:
       = Time.now.strftime("%l:%M%p")
   .content
-    = send "#{widget.type}_chart".to_sym, widget.data_url, refresh: 30, download: true
+    = send "#{widget.type}_chart".to_sym, widget.data_url, **widget.render_attributes
