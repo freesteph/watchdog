@@ -27,17 +27,17 @@ module Watchdog
 
       data = Rails.application.config.widgets
 
-      @widgets = data['groups'].map do |group|
-        group['widgets'].map do |widget|
-          Widget.new group, widget
-        end
-      end.flatten
+      @widgets = data['widgets'].map do |attrs|
+        Widget.new(attrs)
+      end
     end
 
     def check_widgets
       return if @widgets.nil?
 
-      flash[:alert] = []
+      flash[:errors] = {
+        widgets: []
+      }
 
       @widgets.select! do |widget|
         name = controller_name(widget.group)
@@ -46,15 +46,14 @@ module Watchdog
           name.constantize
           true
         rescue NameError
-          flash[:alert][:widgets] ||= []
-          flash[:alert][:widgets] << [widget, name]
+          flash[:errors][:widgets] << [widget, name]
           false
         end
       end
     end
 
     def controller_name(controller)
-      "Watchdog::" + ActiveSupport::Inflector.classify(controller + '_controller')
+      'Watchdog::' + ActiveSupport::Inflector.classify(controller + '_controller')
     end
 
     def logo_for widget

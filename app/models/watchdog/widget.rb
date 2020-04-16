@@ -4,9 +4,7 @@ module Watchdog
   class Widget
     attr_accessor :id, :title, :subtitle, :group, :style, :type, :url
 
-    def initialize(group, attrs)
-      @group = group['name']
-
+    def initialize(attrs)
       attrs.each do |name, value|
         send("#{name}=", value) if respond_to?("#{name}=")
       end

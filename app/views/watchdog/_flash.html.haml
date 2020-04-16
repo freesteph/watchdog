@@ -3,17 +3,18 @@
     .govuk-width-container
       .govuk-grid-row
         .govuk-grid-column-two-thirds
-          - flash.keys.reject { |k| flash[k].empty? }.each do |key|
+          - if flash[:errors][:widgets].any?
+            .errors
+              - flash[:errors][:widgets].each do |widget, name|
+                %p.govuk-body
+                  The widget
+                  %code= widget.id
+                  belongs to
+                  %code= widget.group
+                  \, which maps to a
+                  %code= name
+                  \. No such controller could be found. Please ensure you have defined it.
+          - flash.each do |key|
             %div{class: key}
-              - if key == 'widgets'
-                - flash[key].each do |widget, name|
-                  %p.govuk-body
-                    The widget
-                    %code= widget.id
-                    belongs to
-                    %code= widget.group
-                    \, which maps to a
-                    %code= name
-                    \. No such controller could be found. Please ensure you have defined it.
-              - else
+              - unless key == 'errors'
                 %p.govuk-body!= flash[key]
