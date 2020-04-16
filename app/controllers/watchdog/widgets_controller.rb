@@ -19,8 +19,11 @@ module Watchdog
     private
 
     def map_widgets
-      puts Rails.application.config.respond_to? :widgets
-      return unless Rails.application.config.respond_to? :widgets
+      if not Rails.application.config.respond_to? :widgets
+        flash[:notice] = "Your <code>Rails.config.application</code> does not contain a <code>widgets</code> property. Make sure you have an initializer to set it up."
+        @widgets = []
+        return
+      end
 
       data = Rails.application.config.widgets
 
@@ -43,7 +46,8 @@ module Watchdog
           name.constantize
           true
         rescue NameError
-          flash[:alert] << [widget, name]
+          flash[:alert][:widgets] ||= []
+          flash[:alert][:widgets] << [widget, name]
           false
         end
       end

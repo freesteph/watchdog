@@ -1,3 +1,8 @@
 @import 'page';
 @import 'widgets';
 @import 'flash';
+
+code {
+  background: govuk-colour("light-grey");
+  padding: 0 govuk-spacing(1);
+}

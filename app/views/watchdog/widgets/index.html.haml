@@ -2,9 +2,14 @@
 
 = render 'watchdog/flash'
 
-%h1.govuk-heading-xl This is Watchdog
-
-%pre= @widgets
+- if @widgets.empty?
+  .govuk-width-container
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        %p.govuk-body-l
+          No widgets could be rendered. See the
+          %code README
+          file in the Watchdog source folder for setup instructions.
 
 .grid
   = render partial: 'watchdog/widgets/widget', collection: @widgets
