@@ -1,10 +1,10 @@
 module Watchdog
   class WidgetsController < ApplicationController
-    before_action :index, :map_widgets, :check_widgets
+    before_action :index, :setup_flash, :map_widgets, :check_widgets
 
     def resolve
       id = params[:id]
-      controller = controller_name params[:group]
+      controller = helpers.widget_controller_name params[:group]
 
       c = controller.constantize.new
       c.request = request
@@ -35,25 +35,33 @@ module Watchdog
     def check_widgets
       return if @widgets.nil?
 
-      flash[:errors] = {
-        widgets: []
-      }
-
       @widgets.select! do |widget|
-        name = controller_name(widget.group)
+        name = helpers.widget_controller_name(widget.group)
+
+        valid = true
 
         begin
-          name.constantize
+          c = name.constantize
+
+          if not c.new.respond_to?(widget.id)
+            flash[:errors][:widgets] << [widget, :missing_action]
+            valid = false
+          end
+
           true
         rescue NameError
-          flash[:errors][:widgets] << [widget, name]
-          false
+          flash[:errors][:widgets] << [widget, :missing_controller]
+          valid = false
         end
+
+        valid
       end
     end
 
-    def controller_name(controller)
-      'Watchdog::' + ActiveSupport::Inflector.classify(controller + '_controller')
+    def setup_flash
+      flash[:errors] = {
+        widgets: []
+      }
     end
 
     def logo_for widget

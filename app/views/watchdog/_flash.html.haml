@@ -3,18 +3,6 @@
     .govuk-width-container
       .govuk-grid-row
         .govuk-grid-column-two-thirds
-          - if flash[:errors][:widgets].any?
+          - flash[:errors][:widgets].each do |widget, error|
             .errors
-              - flash[:errors][:widgets].each do |widget, name|
-                %p.govuk-body
-                  The widget
-                  %code= widget.id
-                  belongs to
-                  %code= widget.group
-                  \, which maps to a
-                  %code= name
-                  \. No such controller could be found. Please ensure you have defined it.
-          - flash.each do |key|
-            %div{class: key}
-              - unless key == 'errors'
-                %p.govuk-body!= flash[key]
+              = render(partial: "watchdog/errors/#{error}", locals: { widget: widget })
