@@ -96,7 +96,7 @@ setup and loaded before our import line.
 Add a YAML file in `config/widgets.yml`. It should contain an array of
 widgets under a `widgets` key like this:
 
-```
+```yaml
 widgets:
   -
     id: unanswered_tickets
@@ -127,7 +127,7 @@ In the sample YAML file above, the first widget will look for a
 `ZendeskController` and try to call `unanswered_tickets` on it to get
 data. So go ahead and write a controller for it:
 
-```
+```ruby
 class Watchdog::ZendeskController < ApplicationController
   def unanswered_tickets
     render json: [[2, 3], [3, 4], [4, 5]]
