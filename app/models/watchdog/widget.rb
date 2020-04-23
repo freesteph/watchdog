@@ -2,6 +2,9 @@
 
 module Watchdog
   class Widget
+    include ActiveModel::Model
+    include ApplicationHelper
+
     attr_accessor :id,
                   :title,
                   :subtitle,
@@ -17,6 +20,14 @@ module Watchdog
       end
     end
 
+    def validate!
+      validate_controller! && validate_action!
+    end
+
+    def valid?
+      errors.empty?
+    end
+
     def data_url
       "/watchdog/widgets/#{@group}/#{@id}"
     end
@@ -24,22 +35,30 @@ module Watchdog
     def logo
     end
 
-    def css_id
-      [group, id].join('-')
-    end
+    private
 
-    def css_classes
-      style
-    end
+    def validate_controller!
+      controller = widget_controller_name(group)
 
-    def render_attributes
-      attrs = {}
+      valid = false
 
-      if refresh_rate.present?
-        attrs[:refresh] = refresh_rate
+      begin
+        controller.constantize
+        valid = true
+      rescue NameError
+        errors.add(:group, :missing_controller, { controller: controller })
       end
 
-      attrs
+      valid
+    end
+
+    def validate_action!
+      name = widget_controller_name(group)
+      controller = name.constantize
+
+      unless controller.new.respond_to?(id)
+        errors.add(:id, :missing_action, { controller: name })
+      end
     end
   end
 end

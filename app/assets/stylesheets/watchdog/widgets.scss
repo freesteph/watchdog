@@ -1,5 +1,5 @@
 .widget {
-  width: 300px;
+  flex-basis: 300px;
   flex-grow: 0;
   position: relative;
   background: govuk-colour("light-grey");
@@ -44,6 +44,12 @@
 
   .content {
     padding: 1rem;
+
+    .error {
+      code {
+        color:  $govuk-error-colour;
+      }
+    }
   }
 }
 

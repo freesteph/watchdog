@@ -1,6 +1,6 @@
 module Watchdog
   class WidgetsController < ApplicationController
-    before_action :index, :setup_flash, :map_widgets, :check_widgets
+    before_action :index, :map_widgets, :check_widgets
 
     def resolve
       id = params[:id]
@@ -35,33 +35,7 @@ module Watchdog
     def check_widgets
       return if @widgets.nil?
 
-      @widgets.select! do |widget|
-        name = helpers.widget_controller_name(widget.group)
-
-        valid = true
-
-        begin
-          c = name.constantize
-
-          if not c.new.respond_to?(widget.id)
-            flash[:errors][:widgets] << [widget, :missing_action]
-            valid = false
-          end
-
-          true
-        rescue NameError
-          flash[:errors][:widgets] << [widget, :missing_controller]
-          valid = false
-        end
-
-        valid
-      end
-    end
-
-    def setup_flash
-      flash[:errors] = {
-        widgets: []
-      }
+      @widgets.each(&:validate!)
     end
 
     def logo_for widget

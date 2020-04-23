@@ -1,4 +1,4 @@
-.widget{id: widget.css_id, class: widget.css_classes}
+.widget{id: css_id(widget), class: css_classes(widget)}
   .header
     %h2.govuk-heading-m= widget.title
     %p.govuk-body= widget.subtitle
@@ -9,4 +9,8 @@
       Last updated:
       = Time.now.strftime("%l:%M%p")
   .content
-    = send "#{widget.type}_chart".to_sym, widget.data_url, **widget.render_attributes
+    - if widget.valid?
+      = send "#{widget.type}_chart".to_sym, widget.data_url, **render_attributes(widget)
+    - else
+      - widget.errors.full_messages.each do |msg|
+        %p.error.govuk-body!= msg

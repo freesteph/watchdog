@@ -1,8 +1,6 @@
-- unless flash.empty? or flash.each { |key| flash[:key].nil? }
-  .flash
-    .govuk-width-container
-      .govuk-grid-row
+- unless flash.empty?
+  .govuk-width-container.flash
+    .govuk-grid-row
+      - flash.keys.each do |key|
         .govuk-grid-column-two-thirds
-          - flash[:errors][:widgets].each do |widget, error|
-            .errors
-              = render(partial: "watchdog/errors/#{error}", locals: { widget: widget })
+          %p.govuk-body!= flash[key]

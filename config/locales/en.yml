@@ -1,0 +1,10 @@
+en:
+  activemodel:
+    errors:
+      models:
+        watchdog/widget:
+          attributes:
+            group:
+              missing_controller: "<code>%{value}</code> expects a matching <code>%{controller}</code>. Make sure you have defined such controller."
+            id:
+              missing_action: "<code>%{value}</code> expects a data source implemented as a <code>%{value}</code> method on the <code>%{controller}</code>. Make sure this action exists."
