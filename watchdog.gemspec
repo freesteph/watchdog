@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.name        = "watchdog"
   spec.version     = Watchdog::VERSION
   spec.authors     = ["Stéphane Maniaci"]
-  spec.email       = ["stephane.maniaci@gmail.com"]
-  spec.homepage    = "https://foo.bar"
-  spec.summary     = "Summary of Watchdog."
-  spec.description = "Description of Watchdog."
+  spec.email       = ["stephane.maniaci@digital.cabinet-office.gov.uk"]
+  spec.homepage    = "https://github.com/alphagov/govwifi"
+  spec.summary     = "Watchdog is a Rails engine to map widgets onto a dashboard."
+  spec.description = "Watchdog lets you declare your widgets in YAML format then will take care of the rendering. Declare you widgets, implement your data sources and go."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
