@@ -12,9 +12,13 @@ module Watchdog
       path = File.join(Rails.root, WIDGETS_CONF_PATH)
 
       if File.exist? path
-        config = YAML.safe_load File.read(path)
+        begin
+          config = YAML.safe_load File.read(path)
+        rescue Psych::SyntaxError => e
+          raise "Your widgets configuration (at #{WIDGETS_CONF_PATH}) could not be parsed: #{e.message}"
+        end
       else
-        warn("You haven't declared any widgets in config/widgets.yml")
+        warn("You haven't written a configuration file (expected at: #{WIDGETS_CONF_PATH})")
         config = { widgets: [] }
       end
 

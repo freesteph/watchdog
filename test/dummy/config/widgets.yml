@@ -10,4 +10,4 @@ widgets:
     title: 'Strike 2'
     subtitle: 'yolo'
     type: 'pie'
-    group: 'zendesk''
+    group: 'zendesk'
