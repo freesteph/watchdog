@@ -8,7 +8,6 @@ It reads a YAML file in `config/widgets.yml` and will render them onto
 the page. You only need to define your widgets configuration and write
 the matching controllers action to provide data for them.
 
-
 Example:
 
 In your `config/widgets.yml` file:
@@ -36,6 +35,16 @@ end
 
 And that's it! Read further for detailed instructions.
 
+## Dummy app
+
+If you just want to get a feel of how Watchdog works, just:
+
+1. clone the repo;
+2. run `bundle install`
+3. step into the `test/dummy/` directory;
+4. run `yarn`;
+3. run `bundle exec rails s`;
+5. navigate to `http://localhost:3000/watchdog/widgets`.
 
 ## Installation
 Add this line to your application's Gemfile:
