@@ -2,12 +2,12 @@ widgets:
   -
     id: unanswered_tickets
     title: 'Tickets'
-    subtitle: 'yolo'
+    subtitle: 'By support categories'
     type: 'pie'
     group: 'zendesk'
   -
     id: answered_tickets
-    title: 'Strike 2'
-    subtitle: 'yolo'
-    type: 'pie'
+    title: 'Title'
+    subtitle: 'Subtitle'
+    type: 'line'
     group: 'zendesk'

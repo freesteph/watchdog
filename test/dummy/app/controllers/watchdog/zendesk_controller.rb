@@ -5,6 +5,7 @@ module Watchdog
     end
 
     def answered_tickets
+      render json: [[0, 1], [1, 2], [2, 0], [3, 3]]
     end
   end
 end
